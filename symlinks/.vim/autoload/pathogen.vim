@@ -1,1 +1,1 @@
-/Users/peter/.vim/vimgman/Pathogen.vim/autoload/pathogen.vim
+../vimgman/Pathogen.vim/autoload/pathogen.vim
