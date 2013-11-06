@@ -14,6 +14,7 @@ Bundle 'tomtom/checksyntax_vim'
 Bundle 'mileszs/ack.vim'
 Bundle 'vim-scripts/camelcasemotion'
 Bundle 'Townk/vim-autoclose'
+Bundle 'L9'
 Bundle 'FuzzyFinder'
 Bundle 'snipMate'
 
@@ -184,7 +185,7 @@ nnoremap <leader>w <C-w>v<C-w>l
 " map leader-t to open tag list
 nnoremap <leader>t :TlistToggle <cr>
 " map leader-o to open command-t
-nnoremap <leader>o :CommandT <cr>
+nnoremap <leader>o :FufFile<cr>
 
 " enable syntax highlighting
 syntax on
