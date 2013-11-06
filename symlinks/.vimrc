@@ -14,7 +14,7 @@ Bundle 'tomtom/checksyntax_vim'
 Bundle 'mileszs/ack.vim'
 Bundle 'vim-scripts/camelcasemotion'
 Bundle 'Townk/vim-autoclose'
-Bundle 'wincent/Command-T'
+Bundle 'FuzzyFinder'
 Bundle 'snipMate'
 
 set background=dark
@@ -96,12 +96,21 @@ set ttyfast
 set ruler
 " always show the status line
 set laststatus=2
+
 " show line numbers relative to the current line
-set relativenumber
+if has("relativenumber")
+    set relativenumber
+endif
+
 " tell vim where to put undo files
-set undodir=/private/tmp
+if has("undodir")
+    set undodir=/private/tmp
+endif
+
 " use a persistent undo file to allow undo even if the file has been closed
-set undofile
+if has("undofile")
+    set undofile
+endif
 
 " make sure F1 does not toggle help
 inoremap <F1> <ESC>
@@ -204,22 +213,8 @@ autocmd FileType php let php_sql_query=1
 " highlight html inside of php strings
 autocmd FileType php let php_htmlInStrings=1
 
-" treat *.js.php as a javascript file
-au! BufNewFile,BufRead *.js.php set filetype=javascript
-" treat *.css.php as a css file
-au! BufNewFile,BufRead *.css.php set filetype=css
-
 " set auto-highlighting of matching brackets for php only
 autocmd FileType php DoMatchParen
-
-" pass in a 'custom' js configuration to checksyntax
-" only difference is that it's set to auto run
-let g:checksyntax = {}
-let g:checksyntax['javascript'] = {
-                    \ 'cmd': 'jsl -conf ~/Config/jsl.conf -nofilelisting -nocontext -nosummary -nologo -process',
-                    \ 'okrx': '0 error(s), 0 warning(s)',
-					\ 'auto': 1,
-                    \ }
 
 " check *.ctp files for HTML syntax errors when written
 " autocmd BufWritePost *.ctp CheckSyntax html
@@ -251,23 +246,3 @@ endfun
 
 " this is a bit dangerous. It will strip whitespace from binary files too.
 autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
-
-" trigger CommandTFlush when writing a new file
-augroup NFUCT
-    autocmd!
-    autocmd BufWritePre * call NFUCTset()
-augroup END
-function NFUCTset()
-    if !filereadable(expand('%'))
-        augroup NFUCT
-            autocmd BufWritePost * call NFUCT()
-        augroup END
-    endif
-endfunction
-function NFUCT()
-    augroup NFUCT
-        autocmd!
-        autocmd BufWritePre * call NFUCTset()
-    augroup END
-    CommandTFlush
-endfunction
