@@ -1,8 +1,10 @@
-[user]
-	name = Peter Farsinsen
-	email = pf@cego.dk
+[color]
+        ui = auto
+        interactive = auto
 [push]
-	default = simple
+        default = tracking
+[branch]
+        autosetupmerge = always
 [alias]
 	st = status
 	ci = commit
