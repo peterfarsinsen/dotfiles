@@ -23,6 +23,9 @@ export SVNEDITOR='vim'
 export CLICOLOR=1
 export LSCOLORS=FxGxdxhxcxbxexcxcxFxFx
 
+# Flush the dns cache on OS X 10.9
+alias flushdns='dscacheutil -flushcache;sudo killall -HUP mDNSResponder'
+
 # Alias for deleting Apple System Logs
 alias termspeedup='sudo rm -f /private/var/log/asl/*.asl'
 
