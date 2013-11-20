@@ -48,10 +48,10 @@ cmap W w
 set backup
 
 " tell vim where to put its backup files
-set backupdir=/private/tmp
+set backupdir=./.backup,.,/tmp
 
 " tell vim where to put swap files
-set dir=/private/tmp
+set directory=.,./.backup,/tmp
 
 " read in all plugins using pathogen
 "call pathogen#runtime_append_all_bundles()
