@@ -12,7 +12,9 @@ export PATH
 export LANG='en_US.UTF-8'
 
 # Export NODE_PATH for Node.js
-export NODE_PATH=~/.homebrew/lib/node
+if [ -d ~/.homebrew/lib/node ]; then
+	export NODE_PATH=~/.homebrew/lib/node
+fi
 
 export EDITOR='vim'
 
@@ -46,8 +48,8 @@ if [ -x ~/.homebrew/bin/colorsvn ]; then
 fi
 
 # Source bash completion file
-if [ -f `brew --prefix`/etc/bash_completion ]; then
-  . `brew --prefix`/etc/bash_completion
+if [ -f ~/.homebrew/etc/bash_completion ]; then
+  . ~/.homebrew/etc/bash_completion
 fi
 
 export SVN_BASH_COMPL_EXT='svnstatus recurse externals'
