@@ -1,10 +1,10 @@
 filetype off
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
 " let Vundle manage Vundle
-Bundle 'gmarik/vundle'
+Bundle 'gmarik/Vundle.vim'
 
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'jc00ke/nerdcommenter'
@@ -14,9 +14,12 @@ Bundle 'tomtom/checksyntax_vim'
 Bundle 'mileszs/ack.vim'
 Bundle 'vim-scripts/camelcasemotion'
 Bundle 'Townk/vim-autoclose'
-Bundle 'L9'
-Bundle 'FuzzyFinder'
 Bundle 'snipMate'
+Bundle 'kien/ctrlp.vim'
+Bundle 'xolox/vim-misc'
+Bundle 'xolox/vim-easytags'
+
+call vundle#end()            " required
 
 set background=dark
 
@@ -38,7 +41,7 @@ let Tlist_GainFocus_On_ToggleOpen = 1
 " map comma to be the leader key
 let mapleader=","
 
-" map leager g to :tag <tag>
+" map leader g to :tag <tag>
 noremap <C-g> <c-]>
 
 " map W to w
@@ -48,23 +51,10 @@ cmap W w
 set backup
 
 " tell vim where to put its backup files
-set backupdir=./.backup,.,/tmp
+set backupdir=./.backup,/tmp,.
 
 " tell vim where to put swap files
-set directory=.,./.backup,/tmp
-
-" read in all plugins using pathogen
-"call pathogen#runtime_append_all_bundles()
-" generate help tags for all plugins read in by pathogen
-"call pathogen#helptags()
-
-" map leader e,v to .vimrc
-nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<cr>
-" reload .vimrc when it changes
-autocmd! bufwritepost vimrc source ~/.vimrc
-
-" set CommandT max height
-let g:CommandTMaxHeight = 15
+set directory=,./.backup,/tmp,.
 
 " auto reload files when they change
 set autoread
@@ -77,24 +67,39 @@ set modelines=0
 
 " set default encoding to utf-8
 set encoding=utf-8
+
 " show a list of commands currently entered
 set showcmd
+
 " always show at least 3 lines above and below the current line being edited
 set scrolloff=3
+
 " hide empty buffers
 set hidden
+
 " show tab completions for the command line
 set wildmenu
+
 " limit which tab completions are shown
 set wildmode=list:longest
+
+" ignore case for file names n' stuff
+if exists("&wildignorecase")
+	set wildignorecase
+endif
+
 " use visualbell rather than beeping
 set visualbell
+
 " show the cursorline
 set cursorline
+
 " improve window drawing
 set ttyfast
+
 " show the current position
 set ruler
+
 " always show the status line
 set laststatus=2
 
@@ -129,16 +134,22 @@ set numberwidth=3
 " fix VIMs broken regex
 nnoremap / /\v
 vnoremap / /\v
+
 " ignore case
 set ignorecase
+
 " don't ignore case if explicitly typing caps
 set smartcase
+
 " turn on incremental search
 set incsearch
+
 " show matches as you type
 set showmatch
+
 " hilight matches
 set hlsearch
+
 " map space + leader to clear search results
 nnoremap <leader><space> :noh<cr>
 
@@ -184,14 +195,9 @@ nnoremap <leader>w <C-w>v<C-w>l
 
 " map leader-t to open tag list
 nnoremap <leader>t :TlistToggle <cr>
-" map leader-o to open command-t
-nnoremap <leader>o :FufFile<cr>
 
 " enable syntax highlighting
 syntax on
-
-" set the colorscheme
-colors solarized
 
 filetype plugin indent on
 
@@ -217,9 +223,6 @@ autocmd FileType php let php_htmlInStrings=1
 " set auto-highlighting of matching brackets for php only
 autocmd FileType php DoMatchParen
 
-" check *.ctp files for HTML syntax errors when written
-" autocmd BufWritePost *.ctp CheckSyntax html
-
 " check *.ctp files for PHP syntax errors when written
 autocmd BufWritePost *.ctp CheckSyntax php
 
@@ -232,6 +235,7 @@ autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 
 " autoclose the omnicomplete scratch preview buffer when cursor moves
 autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
+
 " autoclose the omnicomplete scratch preview buffer when leaving insert mode
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 
