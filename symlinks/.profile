@@ -15,6 +15,10 @@ if [ -d /usr/pkg/sbin ]; then
 	PATH=/usr/pkg/sbin:$PATH;
 fi
 
+if [ -d ~/bin ]; then
+	PATH=~/bin:$PATH
+fi
+
 export PATH
 
 export LANG='en_US.UTF-8'

@@ -12,3 +12,6 @@
 	co = checkout
 	df = diff
 	lg = log -p
+[user]
+	name = Peter Farsinsen
+	email = peter@farsinsen.dk
