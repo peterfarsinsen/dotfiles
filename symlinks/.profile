@@ -7,6 +7,14 @@ if [ -d ~/.homebrew/sbin ]; then
 	PATH=~/.homebrew/sbin:$PATH
 fi
 
+if [ -d /usr/pkg/bin ]; then
+	PATH=/usr/pkg/bin:$PATH;
+fi
+
+if [ -d /usr/pkg/sbin ]; then
+	PATH=/usr/pkg/sbin:$PATH;
+fi
+
 export PATH
 
 export LANG='en_US.UTF-8'
